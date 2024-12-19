@@ -6,9 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\SuggestionController;
-use App\Http\Controllers\DataController;
 use App\Http\Controllers\RecomendacionesDocumentoController;
-use App\Http\Controllers\BaseDatosController;
 
 // Página principal (redirecciona al login)
 Route::get('/', [AuthController::class, 'showLogin'])->name('home');
@@ -22,7 +20,7 @@ Route::prefix('auth')->group(function () {
 
 // Rutas protegidas por autenticación
 Route::middleware(['auth'])->group(function () {
-    // Rutas de usuario
+    // Usuario
     Route::get('/usuario', [UserController::class, 'index'])->name('usuario.index');
 
     // Biblioteca
@@ -37,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
     // Recomendaciones de documentos
     Route::get('/recomendaciones', [RecomendacionesDocumentoController::class, 'index'])->name('recomendaciones.index');
     Route::delete('/recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'destroy'])->name('recomendaciones.destroy');
-});
+
 
 // Rutas de registro
 Route::get('/register', function () {
@@ -46,18 +44,16 @@ Route::get('/register', function () {
 
 Route::post('register', [UserController::class, 'register']);
 
-//recomendaciones
-Route::get('recomendacionesdocumento', [RecomendacionesDocumentoController::class, 'index'])->name('vistarecomendaciones');
-Route::delete('/recomendaciones/{idrecomendacionesDocumento}', [RecomendacionesDocumentoController::class, 'destroy'])->name('recomendaciones.destroy');
+// Rutas de login (adicional)
+Route::get('login', function () {
+    return view('auth.login');
+})->name('login');
 
+Route::post('login', [UserController::class, 'login']);
 
-//admin-pestaña 
-Route::get('/admin/añadir', function () {
-    return view('admin_añadir');
-})->name('admin.añadir');
+// Redirección a la biblioteca al iniciar sesión o registrarse
+Route::middleware(['auth'])->group(function () {
+    Route::get('/biblioteca', [LibraryController::class, 'index'])->name('biblioteca.index');
+});
 
-
-
-// Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');
-// Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
-// Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
+});

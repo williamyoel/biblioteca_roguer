@@ -2,23 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
-    // Especificar el nombre de la tabla
-    protected $table = 'usuario';
+    use Notifiable;
 
-    // Especificar la clave primaria
-    protected $primaryKey = 'idusuario';
+    protected $table = 'usuario'; // Nombre de la tabla en la base de datos
 
-    // Atributos que son asignables masivamente
     protected $fillable = [
-        'correo',
-        'contraseña',
-        'creado_en',
+        'correo', // Campo de correo en la tabla
+        'contraseña', // Campo de contraseña en la tabla
     ];
 
-    // Desactivar el uso de timestamps si no los necesitas
-    public $timestamps = false;
+    protected $hidden = [
+        'contraseña', 'remember_token',
+    ];
+
+    // Encriptar la contraseña automáticamente al asignarla
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['contraseña'] = bcrypt($value);
+    }
 }
