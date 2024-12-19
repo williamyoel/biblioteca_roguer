@@ -71,6 +71,12 @@ Route::get('recomendacionesdocumento', [RecomendacionesDocumentoController::clas
 Route::delete('/recomendaciones/{idrecomendacionesDocumento}', [RecomendacionesDocumentoController::class, 'destroy'])->name('recomendaciones.destroy');
 
 
+//admin-pestaña 
+Route::get('/admin/añadir', function () {
+    return view('admin_añadir');
+})->name('admin.añadir');
+
+
 
 // Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');
 // Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
