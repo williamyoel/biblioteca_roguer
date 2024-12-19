@@ -45,6 +45,8 @@
             </div>
         </form>
 
+        <a href="#">¿Olvidaste tu contraseña?</a>
+
         <a href="{{ route('register') }}">crear cuenta</a>
 
         <p>¿Olvidaste tu contraseña? <a href="#">Recuperar contraseña</a></p>
