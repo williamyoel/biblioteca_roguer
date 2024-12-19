@@ -65,12 +65,6 @@
                 <i class="bi bi-pencil-square me-2"></i> Sugerencia/Aportes
             </a>
         </li>
-                <!-- Sugerencia/Aportes -->
-        <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="#">
-                <i class="bi bi-pencil-square me-2"></i> Sugerencia/Aportes
-            </a>
-        </li>
         <!-- cambio de modo -->
         <li class="nav-item">
             <a class="nav-link text-light d-flex align-items-center" href="#">

@@ -7,6 +7,7 @@ use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\RecomendacionesDocumentoController;
 
 // Página principal
 // Route::get('/', [AuthController::class, 'showLogin'])->name('home');
@@ -77,7 +78,11 @@ Route::get('/admin/añadir', function () {
 })->name('admin.añadir');
 
 
-
 // Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');
 // Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
 // Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
+################################################
+Route::get('/usuario', function () {
+    return view('usuario');
+})->name('usuario_index');
+

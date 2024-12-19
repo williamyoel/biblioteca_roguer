@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administrador</title>
+    <title>Administrador</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -27,35 +27,35 @@
 </head>
 <body>
 <nav class="d-flex flex-column p-3">
-    <a class="navbar-brand text-light fs-4 fw-bold mb-4" href="#">Panel de Administrador</a>
+    <a class="navbar-brand text-light fs-4 fw-bold mb-4" href="#">Administrador</a>
     <ul class="navbar-nav flex-grow-1 w-100">
         <!-- Inicio -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="{{ route('inicio') }}">
+            <a class="nav-link text-light d-flex align-items-center" href="#">
                 <i class="bi bi-house me-2"></i> Inicio
-            </a>
-        </li>
-        <!-- Menú de Usuario -->
-        <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="{{ route('menu_usuario') }}">
-                <i class="bi bi-person me-2"></i> Menú de Usuario
             </a>
         </li>
         <!-- Añadir -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="{{ route('agregar') }}">
+            <a class="nav-link text-light d-flex align-items-center" href="#">
                 <i class="bi bi-plus-circle me-2"></i> Añadir
             </a>
         </li>
         <!-- Eliminar -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="{{ route('eliminar') }}">
+            <a class="nav-link text-light d-flex align-items-center" href="#">
                 <i class="bi bi-trash me-2"></i> Eliminar
+            </a>
+        </li>
+        <!-- Menú de Usuario -->
+        <li class="nav-item">
+            <a class="nav-link text-light d-flex align-items-center" href="{{ route('usuario_index') }}">
+                <i class="bi bi-house-door me-2"></i> Menú de Usuario
             </a>
         </li>
         <!-- Cerrar Sesión -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="{{ route('logout') }}">
+            <a class="nav-link text-light d-flex align-items-center" href="#">
                 <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
             </a>
         </li>
