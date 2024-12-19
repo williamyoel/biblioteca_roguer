@@ -4,11 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrarse</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .register-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .register-container label {
+            color: #ddd;
+        }
+        .register-container .form-control {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            color: #333;
+        }
+        .register-container .btn {
+            background-color: #28a745;
+            border: none;
+            font-weight: bold;
+        }
+        .register-container .btn:hover {
+            background-color: #218838;
+        }
+        .register-container a {
+            color: #00bcd4;
+        }
+        .register-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Registrarse</h2>
+    <div class="register-container">
+        <h2 class="text-center">Registrarse</h2>
 
         <!-- Mostrar errores -->
         @if($errors->any())
@@ -24,36 +66,41 @@
         <form action="{{ route('register') }}" method="POST">
             @csrf
 
-            <div class="form-group">
-                <label for="correo">Correo electrónico:</label>
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo electrónico:</label>
                 <input type="email" id="correo" name="correo" class="form-control" value="{{ old('correo') }}" required>
                 @error('correo')
-                    <div class="error">{{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="contraseña">Contraseña:</label>
+            <div class="mb-3">
+                <label for="contraseña" class="form-label">Contraseña:</label>
                 <input type="password" id="contraseña" name="contraseña" class="form-control" required>
                 @error('contraseña')
-                    <div class="error">{{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="confirmar_contraseña">Confirmar contraseña:</label>
+            <div class="mb-3">
+                <label for="confirmar_contraseña" class="form-label">Confirmar contraseña:</label>
                 <input type="password" id="confirmar_contraseña" name="confirmar_contraseña" class="form-control" required>
                 @error('confirmar_contraseña')
-                    <div class="error">{{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Registrarse</button>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success">Registrarse</button>
             </div>
         </form>
 
-        <p>¿Ya tienes cuenta? <a href="{{ route('login') }}">cancelar</a></p>
+        <div class="mt-4 text-center">
+            <p>¿Ya tienes cuenta? <a href="{{ route('login') }}">Iniciar sesión</a></p>
+        </div>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
