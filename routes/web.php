@@ -43,9 +43,4 @@ Route::middleware(['auth'])->group(function () {
 
     // Datos abiertos
     Route::get('/datos', [DataController::class, 'index'])->name('datos.index');
-
-    Route::get('/', function () {
-        return view('welcome');
-    });
-    
 });
