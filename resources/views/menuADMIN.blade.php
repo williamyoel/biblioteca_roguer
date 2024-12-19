@@ -31,13 +31,13 @@
     <ul class="navbar-nav flex-grow-1 w-100">
         <!-- Inicio -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="recomendacionesdocumento">
                 <i class="bi bi-house me-2"></i> Inicio
             </a>
         </li>
         <!-- Añadir -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="/admin/añadir">
                 <i class="bi bi-plus-circle me-2"></i> Añadir
             </a>
         </li>

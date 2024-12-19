@@ -44,16 +44,18 @@ Route::get('/register', function () {
 
 Route::post('register', [UserController::class, 'register']);
 
-// Rutas de login (adicional)
-Route::get('login', function () {
-    return view('auth.login');
-})->name('login');
+//recomendaciones
+Route::get('recomendacionesdocumento', [RecomendacionesDocumentoController::class, 'index'])->name('vistarecomendaciones');
+Route::delete('/recomendaciones/{idrecomendacionesDocumento}', [RecomendacionesDocumentoController::class, 'destroy'])->name('recomendaciones.destroy');
 
-Route::post('login', [UserController::class, 'login']);
 
-// Redirección a la biblioteca al iniciar sesión o registrarse
-Route::middleware(['auth'])->group(function () {
-    Route::get('/biblioteca', [LibraryController::class, 'index'])->name('biblioteca.index');
-});
+//admin-pestaña 
+Route::get('/admin/añadir', function () {
+    return view('admin_añadir');
+})->name('admin.añadir');
 
-});
+
+
+// Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');
+// Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
+// Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
