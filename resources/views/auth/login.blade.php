@@ -45,7 +45,7 @@
             </div>
         </form>
 
-        <a href="#">¿Olvidaste tu contraseña?</a>
+        <a href="recomendacionesdocumento">admin</a>
 
         <a href="{{ route('register') }}">crear cuenta</a>
 

@@ -18,6 +18,7 @@ class RecomendacionesDocumento extends Model
         'picture',
         'estado',
         'descripcion',
+        'creado_en',
     ];
 
     public $timestamps = false;

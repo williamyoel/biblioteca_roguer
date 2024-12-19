@@ -53,7 +53,7 @@
             </div>
         </form>
 
-        <p>¿Ya tienes cuenta? <a href="{{ route('login') }}">Iniciar sesión</a></p>
+        <p>¿Ya tienes cuenta? <a href="{{ route('login') }}">cancelar</a></p>
     </div>
 </body>
 </html>
