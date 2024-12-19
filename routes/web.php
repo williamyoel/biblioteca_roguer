@@ -8,6 +8,19 @@ use App\Http\Controllers\HelpController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\DataController;
 
+
+Route::get('/menu', function () {
+    return view('menu');
+});
+
+Route::get('/usuario', function () {
+    return view('usuario');
+});
+
+Route::get('/libros', function () {
+    return view('libros');
+});
+
 // Página principal
 // Route::get('/', [AuthController::class, 'showLogin'])->name('home');
 
@@ -64,3 +77,29 @@ Route::get('register', function () {
 })->name('register');
 
 Route::post('register', [UserController::class, 'register']);
+
+######################################################################################
+//ruta de admin 
+// Ruta para el inicio
+Route::get('/inicio', function() {
+    return view('inicio');
+})->name('inicio');
+
+// Ruta para el menú de usuario
+Route::get('/menu-usuario', function() {
+    return view('menu_usuario');
+})->name('menu_usuario');
+
+// Ruta para agregar elementos
+Route::get('/agregar', function() {
+    return view('agregar');
+})->name('agregar');
+
+// Ruta para eliminar elementos
+Route::get('/eliminar', function() {
+    return view('eliminar');
+})->name('eliminar');
+
+// Ruta para cerrar sesión
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+################################################################################################
