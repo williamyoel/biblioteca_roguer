@@ -7,6 +7,7 @@ use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\RecomendacionesDocumentoController;
 
 // Página principal
 // Route::get('/', [AuthController::class, 'showLogin'])->name('home');
@@ -64,3 +65,13 @@ Route::get('register', function () {
 })->name('register');
 
 Route::post('register', [UserController::class, 'register']);
+
+//recomendaciones
+Route::get('recomendacionesdocumento', [RecomendacionesDocumentoController::class, 'index'])->name('vistarecomendaciones');
+Route::delete('/recomendaciones/{idrecomendacionesDocumento}', [RecomendacionesDocumentoController::class, 'destroy'])->name('recomendaciones.destroy');
+
+
+
+// Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');
+// Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
+// Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
