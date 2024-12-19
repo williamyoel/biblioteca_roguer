@@ -8,25 +8,28 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    // Procesar inicio de sesión
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/usuario/perfil');
+        }
+
+        return back()->withErrors([
+            'email' => 'Las credenciales no coinciden.',
+        ]);
+    }
+
     // Mostrar formulario de inicio de sesión
     public function showLogin()
     {
         return view('welcome', ['view' => 'login']);
-    }
-
-    // Procesar inicio de sesión
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ]);
-
-        if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->route('home')->with('success', '¡Inicio de sesión exitoso!');
-        }
-
-        return back()->withErrors(['email' => 'Credenciales incorrectas.']);
     }
 
     // Mostrar formulario de registro
@@ -54,9 +57,12 @@ class AuthController extends Controller
     }
 
     // Cerrar sesión
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('login')->with('success', '¡Sesión cerrada correctamente!');
     }
 }
