@@ -73,13 +73,6 @@ Route::get('recomendacionesdocumento', [RecomendacionesDocumentoController::clas
 Route::delete('/recomendaciones/{idrecomendacionesDocumento}', [RecomendacionesDocumentoController::class, 'destroy'])->name('recomendaciones.destroy');
 
 
-//admin-pestaña 
-Route::get('/admin/añadir', function () {
-    return view('admin_añadir');
-})->name('admin.añadir');
-
-
-
 // Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');
 // Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
 // Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
@@ -90,6 +83,9 @@ Route::get('/usuario', function () {
     return view('usuario');
 })->name('usuario_index');
 
+Route::get('/admin_añadir', function () {
+    return view('admin_añadir');
+})->name('admin_añadir');
 
 //rutas para la base de datos
 Route::post('/admin/añadir', [BaseDatosController::class, 'store'])->name('base-datos.store');
