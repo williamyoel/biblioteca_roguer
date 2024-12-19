@@ -11,33 +11,33 @@ use App\Http\Controllers\RecomendacionesDocumentoController;
 use App\Http\Controllers\BaseDatosController;
 
 // Página principal (redirecciona al login)
-Route::get('/', [AuthController::class, 'showLogin'])->name('home');
+// Route::get('/', [AuthController::class, 'showLogin'])->name('home');
 
-// Rutas de autenticación
-Route::prefix('auth')->group(function () {
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login'); // Mostrar login
-    Route::post('/login', [AuthController::class, 'login']); // Procesar login
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // Cerrar sesión
-});
+// // Rutas de autenticación
+// Route::prefix('auth')->group(function () {
+//     Route::get('/login', [AuthController::class, 'showLogin'])->name('login'); // Mostrar login
+//     Route::post('/login', [AuthController::class, 'login']); // Procesar login
+//     Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // Cerrar sesión
+// });
 
-// Rutas protegidas por autenticación
-Route::middleware(['auth'])->group(function () {
-    // Rutas de usuario
-    Route::get('/usuario', [UserController::class, 'index'])->name('usuario.index');
+// // Rutas protegidas por autenticación
+// Route::middleware(['auth'])->group(function () {
+//     // Rutas de usuario
+//     Route::get('/usuario', [UserController::class, 'index'])->name('usuario.index');
 
-    // Biblioteca
-    Route::get('/biblioteca', [LibraryController::class, 'index'])->name('biblioteca.index');
+//     // Biblioteca
+//     Route::get('/biblioteca', [LibraryController::class, 'index'])->name('biblioteca.index');
 
-    // Soporte y ayuda
-    Route::get('/soporte', [HelpController::class, 'index'])->name('soporte.index');
+//     // Soporte y ayuda
+//     Route::get('/soporte', [HelpController::class, 'index'])->name('soporte.index');
 
-    // Sugerencias
-    Route::get('/sugerencias', [SuggestionController::class, 'index'])->name('sugerencias.index');
+//     // Sugerencias
+//     Route::get('/sugerencias', [SuggestionController::class, 'index'])->name('sugerencias.index');
 
-    // Recomendaciones de documentos
-    Route::get('/recomendaciones', [RecomendacionesDocumentoController::class, 'index'])->name('recomendaciones.index');
-    Route::delete('/recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'destroy'])->name('recomendaciones.destroy');
-});
+//     // Recomendaciones de documentos
+//     Route::get('/recomendaciones', [RecomendacionesDocumentoController::class, 'index'])->name('recomendaciones.index');
+//     Route::delete('/recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'destroy'])->name('recomendaciones.destroy');
+// });
 
 // Rutas de registro
 Route::get('/register', function () {
@@ -59,5 +59,5 @@ Route::get('/admin/añadir', function () {
 
 
 // Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');
-// Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
-// Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
+    // Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
+    // Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
