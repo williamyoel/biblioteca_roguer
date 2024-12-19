@@ -8,6 +8,7 @@ use App\Http\Controllers\HelpController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\RecomendacionesDocumentoController;
+use App\Http\Controllers\BaseDatosController;
 
 // Página principal
 // Route::get('/', [AuthController::class, 'showLogin'])->name('home');
@@ -76,6 +77,7 @@ Route::delete('/recomendaciones/{idrecomendacionesDocumento}', [RecomendacionesD
 Route::get('/admin/añadir', function () {
     return view('admin_añadir');
 })->name('admin.añadir');
+
 
 
 // Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');

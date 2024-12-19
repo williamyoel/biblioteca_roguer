@@ -17,6 +17,7 @@ class BaseDatos extends Model
         'descripcion',
         'enlace',
         'estado',
+        'creado_en',
     ];
 
     public $timestamps = false;
