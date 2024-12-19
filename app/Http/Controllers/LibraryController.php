@@ -1,19 +1,29 @@
-<?php
-
 namespace App\Http\Controllers;
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
-// class LibraryController extends Controller
-// {
-//     public function index()
-//     {
-//         $books = [
-//             ['title' => 'Introducción a la Informática', 'author' => 'Juan Perez', 'image' => 'book1.png'],
-//             ['title' => 'Informática Básica', 'author' => 'Maria Lopez', 'image' => 'book2.png'],
-//             ['title' => 'Guía de Inteligencia Artificial', 'author' => 'Jimena Tierra', 'image' => 'book3.png'],
-//         ];
+class LibraryController extends Controller
+{
+    public function index()
+    {
+        $libros = [
+            (object)[
+                'titulo' => 'Introducción a la Informática',
+                'resumen' => 'Este libro introduce conceptos básicos de informática.',
+                'portada' => 'informatica1.jpg',
+            ],
+            (object)[
+                'titulo' => 'Informática',
+                'resumen' => 'Conceptos avanzados de informática.',
+                'portada' => 'informatica2.jpg',
+            ],
+            (object)[
+                'titulo' => 'Inteligencia Artificial',
+                'resumen' => 'Introducción a la IA.',
+                'portada' => 'ia.jpg',
+            ],
+        ];
 
-//         return view('biblioteca_index', ['books' => $books]);
-//     }
-// }
+        return view('biblioteca.index', compact('libros'));
+    }
+}
