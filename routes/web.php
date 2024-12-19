@@ -84,7 +84,12 @@ Route::get('/admin/añadir', function () {
 // Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
 // Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
 ################################################
+
+
 Route::get('/usuario', function () {
     return view('usuario');
 })->name('usuario_index');
 
+
+//rutas para la base de datos
+Route::post('/admin/añadir', [BaseDatosController::class, 'store'])->name('base-datos.store');
