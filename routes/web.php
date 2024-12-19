@@ -10,39 +10,61 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\RecomendacionesDocumentoController;
 use App\Http\Controllers\BaseDatosController;
 
-// Página principal (redirecciona al login)
+// Página principal
 // Route::get('/', [AuthController::class, 'showLogin'])->name('home');
 
-// // Rutas de autenticación
+// // Autenticación
 // Route::prefix('auth')->group(function () {
-//     Route::get('/login', [AuthController::class, 'showLogin'])->name('login'); // Mostrar login
-//     Route::post('/login', [AuthController::class, 'login']); // Procesar login
-//     Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // Cerrar sesión
+//     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+//     Route::post('/login', [AuthController::class, 'login']);
+//     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+//     Route::post('/register', [AuthController::class, 'register']);
+//     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // });
 
-// // Rutas protegidas por autenticación
-// Route::middleware(['auth'])->group(function () {
-//     // Rutas de usuario
-//     Route::get('/usuario', [UserController::class, 'index'])->name('usuario.index');
+// Rutas protegidas por autenticación
+Route::middleware(['auth'])->group(function () {
+    // // Usuario
+    // Route::prefix('usuario')->group(function () {
+    //     Route::get('/', [UserController::class, 'index'])->name('usuario.index');
+    //     Route::get('/perfil', function () {
+    //         return view('usuario.index');
+    //     })->name('usuario.perfil');
+    //     Route::get('/editar', [UserController::class, 'edit'])->name('usuario.editar');
+    //     Route::post('/editar', [UserController::class, 'update'])->name('usuario.update');
+    // });
 
-//     // Biblioteca
-//     Route::get('/biblioteca', [LibraryController::class, 'index'])->name('biblioteca.index');
+    // // Biblioteca
+    // Route::get('/libros', [LibraryController::class, 'index'])->name('biblioteca.index');
 
-//     // Soporte y ayuda
-//     Route::get('/soporte', [HelpController::class, 'index'])->name('soporte.index');
+    // // Soporte y ayuda
+    // Route::get('/soporte', [HelpController::class, 'index'])->name('soporte.index');
 
-//     // Sugerencias
-//     Route::get('/sugerencias', [SuggestionController::class, 'index'])->name('sugerencias.index');
+    // // Sugerencias y aportes
+    // Route::get('/sugerencias', [SuggestionController::class, 'index'])->name('sugerencias.index');
 
-//     // Recomendaciones de documentos
-//     Route::get('/recomendaciones', [RecomendacionesDocumentoController::class, 'index'])->name('recomendaciones.index');
-//     Route::delete('/recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'destroy'])->name('recomendaciones.destroy');
-// });
+    // // Datos abiertos
+    // Route::get('/datos', [DataController::class, 'index'])->name('datos.index');
 
-// Rutas de registro
-Route::get('/register', function () {
+
+    //########################################################################################################################
+
+    
+});
+
+
+// login
+Route::get('login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::post('login', [UserController::class, 'login']);
+
+// register
+Route::get('register', function () {
     return view('auth.register');
 })->name('register');
+
 
 Route::post('register', [UserController::class, 'register']);
 
@@ -59,5 +81,15 @@ Route::get('/admin/añadir', function () {
 
 
 // Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');
-    // Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
-    // Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
+// Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
+// Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
+################################################
+
+
+Route::get('/usuario', function () {
+    return view('usuario');
+})->name('usuario_index');
+
+
+//rutas para la base de datos
+Route::post('/admin/añadir', [BaseDatosController::class, 'store'])->name('base-datos.store');
