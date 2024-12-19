@@ -1,23 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Libros y Artículos</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-</head>
-<body>
-    <div class="library">
-        <h1>Libros y Artículos</h1>
-        <div class="book-list">
-            @foreach ($libros as $libro)
-                <div class="book-item">
-                    <h3>{{ $libro->titulo }}</h3>
-                    <p>{{ $libro->resumen }}</p>
+@extends('layouts.app')
+
+@section('title', 'Libros y Artículos')
+
+@section('content')
+<div class="library">
+    <h1>Libros y Artículos</h1>
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="book-list">
+        @foreach ($libros as $libro)
+            <div class="book-item">
+                <img src="{{ asset('images/' . $libro->portada) }}" alt="Portada de {{ $libro->titulo }}">
+                <h3>{{ $libro->titulo }}</h3>
+                <p>{{ $libro->resumen }}</p>
+                <div class="book-actions">
+                    <button>📄 Archivo</button>
                     <button>📥 Descargar</button>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
-</body>
-</html>
+</div>
+@endsection
