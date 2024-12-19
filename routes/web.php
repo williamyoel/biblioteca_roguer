@@ -47,3 +47,8 @@ Route::get('/sugerencias', [SuggestionController::class, 'index'])->name('sugere
 
 // Datos abiertos
 Route::get('/datos', [DataController::class, 'index'])->name('datos.index');
+
+
+//rene rutas
+//ruta para la pestañas datos abiertos 
+Route::get('/datosabiertos', [DataController::class, 'index'])->name('datosAbiertos.index');
