@@ -77,16 +77,14 @@ Route::get('/admin/añadir', function () {
 })->name('admin.añadir');
 
 
-
-// Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');
-// Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
-// Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
-################################################
-
-
+//usuario
 Route::get('/usuario', function () {
-    return view('usuario');
+    return view('usuario_index');
 })->name('usuario_index');
+// Ruta para ver el perfil del usuario
+Route::get('/perfil', [UserController::class, 'profile'])->name('usuario_perfil');
+
+
 
 
 //rutas para la base de datos
