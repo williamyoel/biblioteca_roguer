@@ -9,7 +9,7 @@
             <h2>Nombre: {{ Auth::user()->name }}</h2>
             <p>Email: {{ Auth::user()->email }}</p>
 
-            <a href="{{ route('usuario.editar') }}">
+            <a href="{{ route(  'usuario.editar') }}">
                 <button>✏️ Editar Perfil</button>
             </a>
             <a href="{{ route('home') }}">

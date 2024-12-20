@@ -17,6 +17,13 @@
             background-color: #343a40; /* Color oscuro para el menú (sidebar) */
             width: 250px; /* Ancho del menú */
             color: #fff; /* Texto blanco */
+            padding-top: 20px; /* Espacio extra arriba */
+        }
+        nav img {
+            width: 100%; /* Imagen ocupará el 100% del ancho del sidebar */
+            height: auto; /* Mantener la relación de aspecto */
+            max-height: 150px; /* Máxima altura para la imagen */
+            object-fit: cover; /* Asegura que la imagen se recorte si es necesario */
         }
         main {
             flex-grow: 1; /* El resto de la página ocupa el espacio restante */
@@ -27,6 +34,9 @@
 </head>
 <body>
 <nav class="d-flex flex-column p-3">
+    <!-- Imagen en la parte superior del menú -->
+    <img src="public/images/imagen_usuario.jpg" alt="Logo de la Biblioteca">
+    
     <a class="navbar-brand text-light fs-4 fw-bold mb-4" href="#">Biblioteca</a>
     <ul class="navbar-nav flex-grow-1 w-100">
         <!-- Usuario -->
@@ -73,7 +83,7 @@
         </li>
         <!-- Cerrar Sesión -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="login">
                 <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
             </a>
         </li>

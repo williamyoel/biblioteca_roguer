@@ -8,6 +8,12 @@ use App\Http\Controllers\HelpController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\RecomendacionesDocumentoController;
 use App\Http\Controllers\BaseDatosController;
+
+#para serrar sesion
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    });
+
 // Página principal
 // Route::get('/', [AuthController::class, 'showLogin'])->name('home');
 // // Autenticación
