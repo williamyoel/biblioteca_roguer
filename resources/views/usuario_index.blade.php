@@ -7,16 +7,18 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
-    @if(Auth::check()) <!-- Verifica si el usuario está autenticado -->
+    @if ($user) <!-- Verifica si el objeto $user existe -->
         <div class="profile">
             <h1>Perfil del Usuario</h1>
-            <img src="#" alt="Foto del Usuario" style="width:150px; height:150px; border-radius:50%;"> <!-- Foto del perfil -->
+            <!-- Foto del perfil (si está disponible en $user->rutafoto) -->
+            <img src="#" alt="Foto del Usuario" style="width:150px; height:150px; border-radius:50%;">
 
-            <h2>Nombre: {{ Auth::user()->name }}</h2> <!-- Muestra el nombre del usuario autenticado -->
-            <p>Email: {{ Auth::user()->email }}</p> <!-- Muestra el correo del usuario autenticado -->
+            <!-- Muestra el nombre y el correo del usuario -->
+            <h2>Nombre: {{ $user->nombre }}</h2>
+            <p>Email: {{ $user->correo }}</p>
 
             <!-- Enlace para editar el perfil -->
-            <a href="#', ['id' => Auth::user()->id]) }}">
+            <a href="#">
                 <button>✏️ Editar Perfil</button>
             </a>
 
