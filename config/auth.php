@@ -35,12 +35,13 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+   'guards' => [
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'usuarios', // Cambiado a usuarios
     ],
+],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -59,12 +60,13 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
-        ],
+    
+'providers' => [
+    'usuarios' => [ // Cambiado a usuarios
+        'driver' => 'eloquent',
+        'model' => App\Models\Usuario::class, // Cambiado a Usuario
     ],
+],
 
     /*
     |--------------------------------------------------------------------------
