@@ -68,7 +68,7 @@
         </li>
         <!-- Libros/Artículos -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('libros') ? 'active' : '' }}" href="#">
+            <a class="nav-link text-light d-flex align-items-center {{ Request::is('libros') ? 'active' : '' }}" href="libro_articulos">
                 <i class="bi bi-journal me-2"></i> Libros/Artículos
             </a>
         </li>
