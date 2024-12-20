@@ -6,13 +6,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\SuggestionController;
-use App\Http\Controllers\DataController;
 use App\Http\Controllers\RecomendacionesDocumentoController;
-
-
+use App\Http\Controllers\BaseDatosController;
 // Página principal
 // Route::get('/', [AuthController::class, 'showLogin'])->name('home');
-
 // // Autenticación
 // Route::prefix('auth')->group(function () {
 //     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -23,7 +20,7 @@ use App\Http\Controllers\RecomendacionesDocumentoController;
 // });
 
 // Rutas protegidas por autenticación
-//Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     // // Usuario
     // Route::prefix('usuario')->group(function () {
     //     Route::get('/', [UserController::class, 'index'])->name('usuario.index');
@@ -45,14 +42,10 @@ use App\Http\Controllers\RecomendacionesDocumentoController;
 
     // // Datos abiertos
     // Route::get('/datos', [DataController::class, 'index'])->name('datos.index');
-
-
     //########################################################################################################################
 
     
-//});
-
-
+});
 // login
 Route::get('login', function () {
     return view('auth.login');
@@ -79,10 +72,10 @@ Route::get('/admin/añadir', function () {
 })->name('admin.añadir');
 
 
-// Route::get('recomendaciones/create', [RecomendacionesDocumentoController::class, 'create'])->name('recomendaciones.create');
-// Route::get('recomendaciones/{id}', [RecomendacionesDocumentoController::class, 'show'])->name('recomendaciones.show');
-// Route::get('recomendaciones/{id}/edit', [RecomendacionesDocumentoController::class, 'edit'])->name('recomendaciones.edit');
-################################################
-Route::get('/menu', function () {
-    return view('menu'); // Esta es la vista que se redirigirá
-});
+Route::get('/usuario', function () {
+    return view('usuario');
+})->name('usuario_index');
+
+
+//rutas para la base de datos
+Route::post('/admin/añadir', [BaseDatosController::class, 'store'])->name('base-datos.store');

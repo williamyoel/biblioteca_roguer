@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario; // Asegúrate de usar el modelo correcto
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Usuario; // Modelo correcto basado en tu estructura
 
 class UserController extends Controller
 {
-    // Función para iniciar sesión (Login)
+    // Iniciar sesión
     public function login(Request $request)
     {
         $request->validate([
@@ -17,49 +17,35 @@ class UserController extends Controller
             'contraseña' => 'required|string',
         ]);
 
-        // Buscar el usuario por correo
-        $user = Usuario::where('correo', $request->correo)->first();
-
-        // Verificar si el usuario existe y la contraseña es correcta
-        if (!$user || !Hash::check($request->contraseña, $user->contraseña)) {
-            // Devolver mensaje de error a la vista
-            return redirect()->back()->withErrors(['correo' => 'Credenciales incorrectas']);
+        if (Auth::attempt(['correo' => $request->correo, 'password' => $request->contraseña])) {
+            return redirect()->route('biblioteca.index'); // Redirige a biblioteca_index
         }
 
-        // Iniciar sesión
-        Auth::login($user);
-
-        // Redirigir al usuario a la página principal (por ejemplo)
-        return redirect()->route('inicio'); // Cambia la ruta según tu estructura
+        return back()->withErrors(['correo' => 'Credenciales incorrectas.']);
     }
 
-    // Función para registrar un nuevo usuario
+    // Registrar nuevo usuario
     public function register(Request $request)
     {
-        // Validar los datos de entrada
         $request->validate([
-            'correo' => 'required|email|unique:usuario,correo', // Asegurarte que se valida contra la tabla 'usuario'
-            'contraseña' => 'required|string|min:6',
-            'confirmar_contraseña' => 'required|string|same:contraseña',
+            'correo' => 'required|email|unique:usuario,correo',
+            'contraseña' => 'required|min:6|confirmed',
         ]);
 
-        // Crear un nuevo usuario
         $user = Usuario::create([
             'correo' => $request->correo,
-            'contraseña' => bcrypt($request->contraseña), // Encriptar la contraseña
-            // 'creado_en' => now(),  // Solo si es necesario y si la columna existe en la tabla
+            'contraseña' => Hash::make($request->contraseña),
         ]);
 
-        // Iniciar sesión automáticamente después del registro
         Auth::login($user);
 
-        // Redirigir al usuario a la página principal o cualquier otra ruta
-        return redirect()->route('inicio'); // Cambia la ruta según tu estructura
+        return redirect()->route('biblioteca.index'); // Redirige a biblioteca_index
     }
 
-    // Función para mostrar la página de inicio
-    public function inicio()
+    // Cerrar sesión
+    public function logout()
     {
-        return view('auth.inicio');  // Esta es la vista 'inicio.blade.php'
+        Auth::logout();
+        return redirect()->route('login')->with('success', 'Sesión cerrada correctamente.');
     }
 }

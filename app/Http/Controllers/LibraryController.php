@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -6,24 +8,12 @@ class LibraryController extends Controller
 {
     public function index()
     {
+        // Ejemplo de libros, ajusta según tu lógica
         $libros = [
-            (object)[
-                'titulo' => 'Introducción a la Informática',
-                'resumen' => 'Este libro introduce conceptos básicos de informática.',
-                'portada' => 'informatica1.jpg',
-            ],
-            (object)[
-                'titulo' => 'Informática',
-                'resumen' => 'Conceptos avanzados de informática.',
-                'portada' => 'informatica2.jpg',
-            ],
-            (object)[
-                'titulo' => 'Inteligencia Artificial',
-                'resumen' => 'Introducción a la IA.',
-                'portada' => 'ia.jpg',
-            ],
+            (object)['titulo' => 'Libro 1', 'resumen' => 'Resumen del libro 1', 'portada' => 'libro1.jpg'],
+            (object)['titulo' => 'Libro 2', 'resumen' => 'Resumen del libro 2', 'portada' => 'libro2.jpg'],
         ];
 
-        return view('biblioteca.index', compact('libros'));
+        return view('biblioteca_index', compact('libros'));
     }
 }
