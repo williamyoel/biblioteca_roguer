@@ -4,7 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Fondo general */
+        body {
+            background: url('https://blog.pearsonlatam.com/educacion-del-futuro/que-contenidos-ofrece-una-biblioteca-digital-a-tu-institucion') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Contenedor del formulario */
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo de las etiquetas */
+        .login-container label {
+            color: #ddd;
+        }
+
+        /* Campos de texto */
+        .login-container .form-control {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            color: #333;
+        }
+
+        /* Botones */
+        .login-container .btn {
+            background-color: #007bff;
+            border: none;
+            font-weight: bold;
+        }
+
+        .login-container .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Enlaces */
+        .login-container a {
+            color: #00bcd4;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -51,5 +106,8 @@
 
         <p>¿Olvidaste tu contraseña? <a href="#">Recuperar contraseña</a></p>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

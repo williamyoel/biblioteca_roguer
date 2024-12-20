@@ -8,9 +8,14 @@ use App\Http\Controllers\HelpController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\RecomendacionesDocumentoController;
 use App\Http\Controllers\BaseDatosController;
+
+#para serrar sesion
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    });
+
 // Página principal
 // Route::get('/', [AuthController::class, 'showLogin'])->name('home');
-
 // // Autenticación
 // Route::prefix('auth')->group(function () {
 //     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -43,14 +48,10 @@ Route::middleware(['auth'])->group(function () {
 
     // // Datos abiertos
     // Route::get('/datos', [DataController::class, 'index'])->name('datos.index');
-
-
     //########################################################################################################################
 
     
 });
-
-
 // login
 Route::get('login', function () {
     return view('auth.login');
@@ -85,7 +86,10 @@ Route::get('/usuario', function () {
 Route::get('/perfil', [UserController::class, 'profile'])->name('usuario_perfil');
 
 
-
-
 //rutas para la base de datos
 Route::post('/admin/añadir', [BaseDatosController::class, 'store'])->name('base-datos.store');
+
+#redirecion para soporte y ayuda
+Route::get('soporte_ayuda_index', function () {
+    return view('soporte_ayuda_index');
+});

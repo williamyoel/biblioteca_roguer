@@ -27,11 +27,12 @@
 </head>
 <body>
 <nav class="d-flex flex-column p-3">
+<img src="{{ asset('images/logo admin.png') }}" class="img-fluid">
     <a class="navbar-brand text-light fs-4 fw-bold mb-4" href="#">Administrador</a>
     <ul class="navbar-nav flex-grow-1 w-100">
         <!-- Inicio -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="recomendacionesdocumento">
+            <a class="nav-link text-light d-flex align-items-center" href="#">
                 <i class="bi bi-house me-2"></i> Inicio
             </a>
         </li>
@@ -55,7 +56,7 @@
         </li>
         <!-- Cerrar Sesión -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="login">
                 <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
             </a>
         </li>

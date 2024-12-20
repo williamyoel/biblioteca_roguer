@@ -29,7 +29,7 @@ class AuthController extends Controller
     }
 
     // Cerrar sesión
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Auth::logout();
         return redirect()->route('login')->with('success', '¡Sesión cerrada correctamente!');
