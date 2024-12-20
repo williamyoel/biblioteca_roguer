@@ -19,6 +19,38 @@ class RecomendacionesDocumentoController extends Controller
     }
 
 
+    public function recomendaciones()
+    {
+        $recomendaciones = RecomendacionesDocumento::all();
+
+        return response()->json($recomendaciones);
+    }
+
+    public function store(Request $request)
+    {
+
+        $request->validate([
+            'comentario' => 'required',
+            'enlace' => 'nullable|url',
+            'picture' => 'nullable|url',
+            'estado' => 'required|in:activo,inactivo',
+            'descripcion' => 'nullable',
+        ]);
+
+        // Crear una nueva recomendación
+        $recomendacion = new RecomendacionesDocumento();
+        $recomendacion->comentario = $request->comentario;
+        $recomendacion->enlace = $request->enlace;
+        $recomendacion->picture = $request->picture;
+        $recomendacion->estado = $request->estado;
+        $recomendacion->descripcion = $request->descripcion;
+
+        // Guardar la recomendación en la base de datos
+        $recomendacion->save();
+
+        // Devolver una respuesta en formato JSON
+        return response()->json(['success' => true, 'message' => 'Recomendación añadida correctamente.']);
+    }
 
     // Eliminar una recomendación
     public function destroy($idrecomendacionesDocumento)
