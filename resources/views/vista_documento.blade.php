@@ -11,94 +11,73 @@
     <!-- Agregar Bootstrap desde un CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Estilos para los botones, alinearlos a la misma altura que el buscador */
-        .btn-group {
-            display: flex;
-            gap: 10px;  /* Espaciado entre los botones */
-            margin-top: 20px;
-        }
+    .buscardoc {
+        position: fixed;
+        top: 0;
+        left: 250px; /* Ajusta según el ancho del menú lateral */
+        width: calc(100% - 250px); /* Calcula el espacio restante */
+        background-color: #fff; /* Fondo blanco para evitar solapamientos visuales */
+        padding: 15px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para diferenciar del contenido */
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    }
 
-        /* Estilo adicional para los botones */
-        .btn {
-            flex: 1;
-        }
+    .content-scrollable {
+        margin-top: 120px; /* Margen igual a la altura de la barra fija */
+        padding: 15px;
+        height: calc(100vh - 120px); /* Altura restante */
+        overflow-y: auto; /* Hace el contenido desplazable */
+    }
 
-        /* Contenedor para mostrar los libros, artículos y otros documentos */
-        .documents-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 3 columnas adaptativas */
-            gap: 20px;  /* Espacio entre las tarjetas */
-            margin-top: 20px;
-        }
+    .btn-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
 
-        /* Estilo para las tarjetas */
-        .card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+    .btn {
+        flex: 1;
+    }
 
-        /* Estilo para las imágenes */
-        .card-img-top {
-            height: 200px;  /* Altura fija para las imágenes */
-            object-fit: cover;  /* Mantiene la imagen centrada y ajustada */
-        }
+    .documents-section {
+        margin-bottom: 15px;
+    }
 
-        .card-body {
-            padding: 15px;
-        }
+    .card {
+        margin-bottom: 15px;
+    }
 
-        .col-md-4 {
-            display: flex;
-            justify-content: center;
-            padding: 5px;
-        }
 
-        /* Contenedor para los libros gratuitos, artículos y libros de paga */
-        .documents-section {
-            margin-top: 30px;
-        }
+    .mostrarLIBRS{
+        
+        display: flex;
+        height: 100vh;
+    }
+        
+    
+</style>
 
-        .search-container {
-            margin-top: 30px; /* Ajuste el margen superior para mover el campo más arriba */
-        }
-
-        .document-title {
-            margin-top: 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        /* Mensaje si no hay libros disponibles */
-        .no-results {
-            text-align: center;
-            color: #888;
-            font-size: 1.2rem;
-        }
-
-    </style>
 </head>
 <body>
     <div class="container">
-        <h2 class="mt-4">Buscar Documentos</h2>
+        <div class="buscardoc">
+            <h2 class="mt-4">Buscar Documentos</h2>
 
-        <!-- Botones para filtrar -->
-        <div class="btn-group">
-            <button class="btn btn-info" onclick="mostrarArticulos()">Artículos</button>
-            <button class="btn btn-info" onclick="mostrarLibrosDePaga()">Libros de Paga</button>
+            <!-- Botones para filtrar -->
+            <div class="btn-group">
+                <button class="btn btn-info" onclick="mostrarArticulos()">Artículos</button>
+                <button class="btn btn-info" onclick="mostrarLibrosDePaga()">Libros de Paga</button>
+            </div>
+
+            <!-- Buscador -->
+            <div class="form-group search-container mt-4">
+                <label for="buscar">Buscar Documento</label>
+                <input type="text" id="buscar" class="form-control" placeholder="Busca un libro o artículo..." oninput="buscarDocumentos()">
+            </div>
         </div>
-
-        <!-- Buscador -->
-        <div class="form-group search-container mt-4">
-            <label for="buscar">Buscar Documento</label>
-            <input type="text" id="buscar" class="form-control" placeholder="Busca un libro o artículo..." oninput="buscarDocumentos()">
-        </div>
-
-        <!-- Mostrar libros gratuitos -->
-        <div id="libros-gratuitos" class="documents-section">
+        <div class="mostrarLIBRS">
+            <!-- Mostrar libros gratuitos -->
+            <div id="libros-gratuitos" class="documents-section">
             <h4 class="document-title">Libros Gratuitos</h4>
             <div id="libros-gratuitos-list" class="documents-container">
                 <!-- Los libros gratuitos se agregarán aquí dinámicamente -->
@@ -127,100 +106,98 @@
 
     <!-- Script para manejar la lógica -->
     <script>
-        // Función para hacer la búsqueda de documentos
         function buscarDocumentos() {
-            let query = document.getElementById('buscar').value;
-            fetch(`/api/documentos?search=${query}`)
-                .then(response => response.json())
-                .then(data => {
-                    mostrarLibrosGratuitos(data.gratuitos);
-                });
+            let query = document.getElementById('buscar').value.trim();
+            if (query) {
+                fetch(`/api/documentos?search=${encodeURIComponent(query)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        mostrarLibrosGratuitos(data.gratuitos || []);
+                    })
+                    .catch(error => console.error('Error al buscar documentos:', error));
+            }
         }
 
-        // Función para mostrar libros gratuitos
         function mostrarLibrosGratuitos(libros) {
             let container = document.getElementById('libros-gratuitos-list');
             let noResults = document.getElementById('no-libros-gratuitos');
-            container.innerHTML = ''; // Limpiar la lista
-            if (libros && libros.length > 0) {
+            container.innerHTML = '';
+            if (libros.length > 0) {
                 libros.forEach(libro => {
                     let imagen = libro.imagen || '/images/placeholder.png';
                     let enlace = libro.enlace || '#';
-                    let libroElement = `
+                    container.innerHTML += `
                         <div class="card">
                             <img src="${imagen}" alt="${libro.titulo}" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title">${libro.titulo}</h5>
                                 <p class="card-text">${libro.descripcion}</p>
-                                <a href="${enlace}" class="btn btn-primary" target="${enlace !== '#' ? '_blank' : ''}">Ver Libro</a>
+                                <a href="${enlace}" class="btn btn-primary" target="_blank">Ver Libro</a>
                             </div>
                         </div>
                     `;
-                    container.innerHTML += libroElement;
                 });
-                noResults.style.display = 'none'; // Ocultar mensaje de no resultados
+                noResults.style.display = 'none';
             } else {
-                noResults.style.display = 'block'; // Mostrar mensaje de no resultados
+                noResults.style.display = 'block';
             }
         }
 
-        // Función para mostrar artículos
         function mostrarArticulos() {
-            document.getElementById('articulos').style.display = 'block';
-            document.getElementById('libros-paga').style.display = 'none';
-            document.getElementById('libros-gratuitos').style.display = 'none';
-
+            cambiarSeccion('articulos');
             fetch('/api/articulos')
                 .then(response => response.json())
                 .then(data => {
                     let container = document.getElementById('articulos-list');
-                    container.innerHTML = ''; // Limpiar lista de artículos
+                    container.innerHTML = '';
                     data.forEach(articulo => {
-                        let imagen = articulo.imagen ? articulo.imagen : '/images/placeholder.png';
-                        let enlace = articulo.enlace ? articulo.enlace : '#';
-                        let articuloElement = `
+                        let imagen = articulo.imagen || '/images/placeholder.png';
+                        let enlace = articulo.enlace || '#';
+                        container.innerHTML += `
                             <div class="card">
                                 <img src="${imagen}" alt="${articulo.titulo}" class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">${articulo.titulo}</h5>
                                     <p class="card-text">${articulo.descripcion}</p>
-                                    <a href="${enlace}" class="btn btn-primary" target="${enlace !== '#' ? '_blank' : ''}">Ver Artículo</a>
+                                    <a href="${enlace}" class="btn btn-primary" target="_blank">Ver Artículo</a>
                                 </div>
                             </div>
                         `;
-                        container.innerHTML += articuloElement;
                     });
                 });
         }
 
-        // Función para mostrar libros de paga
         function mostrarLibrosDePaga() {
-            document.getElementById('articulos').style.display = 'none';
-            document.getElementById('libros-paga').style.display = 'block';
-            document.getElementById('libros-gratuitos').style.display = 'none';
-
+            cambiarSeccion('libros-paga');
             fetch('/api/libros-paga')
                 .then(response => response.json())
                 .then(data => {
                     let container = document.getElementById('libros-paga-list');
-                    container.innerHTML = ''; // Limpiar lista
+                    container.innerHTML = '';
                     data.forEach(libro => {
-                        let imagen = libro.imagen ? libro.imagen : '/images/placeholder.png';
-                        let enlace = libro.enlace ? libro.enlace : '#';
-                        let libroPagaElement = `
+                        let imagen = libro.imagen || '/images/placeholder.png';
+                        let enlace = libro.enlace || '#';
+                        container.innerHTML += `
                             <div class="card">
                                 <img src="${imagen}" alt="${libro.titulo}" class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">${libro.titulo}</h5>
                                     <p class="card-text">${libro.descripcion}</p>
-                                    <a href="${enlace}" class="btn btn-primary" target="${enlace !== '#' ? '_blank' : ''}">Ver Libro</a>
+                                    <a href="${enlace}" class="btn btn-primary" target="_blank">Ver Libro</a>
                                 </div>
                             </div>
                         `;
-                        container.innerHTML += libroPagaElement;
                     });
                 });
         }
+
+        function cambiarSeccion(id) {
+            document.getElementById('articulos').style.display = 'none';
+            document.getElementById('libros-paga').style.display = 'none';
+            document.getElementById('libros-gratuitos').style.display = 'none';
+            document.getElementById(id).style.display = 'block';
+        }
+
     </script>
 
     <!-- Añadir Popper y Bootstrap JS -->

@@ -9,26 +9,23 @@
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        body {
-            display: flex;
-            height: 100vh;
-        }
+      
         nav {
             background-color: #343a40;
             width: 250px;
             color: #fff;
             padding-top: 20px;
             text-align: center;
+            position: fixed; /* Fija el menú en la parte izquierda */
+            top: 0;
+            left: 0;
+            height: 100%; /* Ocupa toda la altura */
+            z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
         }
         nav .logo {
             font-size: 4rem;
             color: #fff;
             margin-bottom: 20px;
-        }
-        main {
-            flex-grow: 1;
-            background-color: #f8f9fa;
-            padding: 20px;
         }
         .nav-link {
             transition: color 0.3s, font-weight 0.3s, transform 0.3s, box-shadow 0.3s;
@@ -45,6 +42,12 @@
             color: #ccc; /* Color al pasar el ratón */
             transform: translateY(-5px); /* Eleva el enlace */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        }
+
+        main {
+            margin-left: 250px; 
+            background-color: #f8f9fa;
+            padding: 20px;
         }
     </style>
 </head>
@@ -110,6 +113,7 @@
         @yield('content')
     </div>
 </main>
+</body>
 
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
