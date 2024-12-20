@@ -56,49 +56,49 @@
     <ul class="navbar-nav flex-grow-1 w-100">
         <!-- Usuario -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('usuario') ? 'active' : '' }}" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="/usuario">
                 <i class="bi bi-person me-2"></i> Usuario
             </a>
         </li>
         <!-- Inicio -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('inicio') ? 'active' : '' }}" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="/vista_inicio">
                 <i class="bi bi-house me-2"></i> Inicio
             </a>
         </li>
         <!-- Libros/Artículos -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('libros') ? 'active' : '' }}" href="libro_articulos">
+            <a class="nav-link text-light d-flex align-items-center" href="/libro_articulos">
                 <i class="bi bi-journal me-2"></i> Libros/Artículos
             </a>
         </li>
         <!-- Datos Abiertos -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('base-datos') ? 'active' : '' }}" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="/vista_basededatos">
                 <i class="bi bi-bar-chart me-2"></i> Base De Datos
             </a>
         </li>
         <!-- Soporte/Ayuda -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('soporte_ayuda_index') ? 'active' : '' }}" href="soporte_ayuda_index">
+            <a class="nav-link text-light d-flex align-items-center" href="/soporte_ayuda_index">
                 <i class="bi bi-question-circle me-2"></i> Soporte/Ayuda
             </a>
         </li>
         <!-- Sugerencia/Aportes -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('sugerencias') ? 'active' : '' }}" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="/sugerencias_aportes">
                 <i class="bi bi-pencil-square me-2"></i> Sugerencia/Aportes
             </a>
         </li>
         <!-- cambio de modo -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('modo') ? 'active' : '' }}" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="#">
                 <i class="bi bi-sun me-2"></i> Claro/Oscuro
             </a>
         </li>
         <!-- Cerrar Sesión -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('login') ? 'active' : '' }}" href="login">
+            <a class="nav-link text-light d-flex align-items-center" href="login">
                 <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
             </a>
         </li>

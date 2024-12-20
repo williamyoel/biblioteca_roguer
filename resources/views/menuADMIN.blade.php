@@ -48,31 +48,31 @@
     <ul class="navbar-nav flex-grow-1 w-100">
         <!-- Inicio -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('admin') ? 'active' : '' }}" href="vistarecomendaciones">
+            <a class="nav-link text-light d-flex align-items-center" href="/recomendacionesdocumento">
                 <i class="bi bi-house me-2"></i> Inicio
             </a>
         </li>
         <!-- Añadir -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('admin/añadir') ? 'active' : '' }}" href="/admin/añadir">
+            <a class="nav-link text-light d-flex align-items-center" href="/admin/añadir">
                 <i class="bi bi-plus-circle me-2"></i> Añadir
             </a>
         </li>
         <!-- Eliminar -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('admin/eliminar') ? 'active' : '' }}" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="/admin_eliminar">
                 <i class="bi bi-trash me-2"></i> Eliminar
             </a>
         </li>
         <!-- Menú de Usuario -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('usuario_index') ? 'active' : '' }}" href="{{ route('usuario_index') }}">
+            <a class="nav-link text-light d-flex align-items-center" href="/vista_inicio">
                 <i class="bi bi-house-door me-2"></i> Menú de Usuario
             </a>
         </li>
         <!-- Cerrar Sesión -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center {{ Request::is('login') ? 'active' : '' }}" href="login">
+            <a class="nav-link text-light d-flex align-items-center" href="/login">
                 <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
             </a>
         </li>

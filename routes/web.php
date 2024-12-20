@@ -119,3 +119,20 @@ Route::get('/sugerencias_aportes', function () {
 })->name('sugerencias_aportes');
 
 Route::get('/recomendaciones', [RecomendacionesDocumentoController::class, 'mostrarRecomendaciones'])->name('recomendaciones');
+
+
+//vista inicio
+Route::get('/vista_inicio', function () {
+    return view('vista_inicio'); // Asegúrate de que 'vista_documento' sea el nombre correcto del archivo blade.php
+})->name('vista_inicio');
+
+
+//rutas para la base de datos
+Route::get('/vista_basededatos', function () {
+    return view('vista_basededatos'); // Asegúrate de que 'vista_documento' sea el nombre correcto del archivo blade.php
+})->name('vista_basededatos');
+
+//admin eliminar
+Route::get('/admin_eliminar', function () {
+    return view('admin_eliminar'); // Asegúrate de que 'vista_documento' sea el nombre correcto del archivo blade.php
+})->name('admin_eliminar');
