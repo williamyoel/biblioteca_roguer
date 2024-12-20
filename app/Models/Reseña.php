@@ -27,6 +27,6 @@ class Reseña extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(User::class, 'idusuario');
+        return $this->belongsTo(Usuario::class, 'idusuario');
     }
 }

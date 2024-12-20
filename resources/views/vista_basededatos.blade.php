@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,66 +12,113 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="h1">Bases de Datos</div>
 
-    <!-- Header Section -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Base de Datos</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <table class="table mt-3" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Enlace</th>
+                <th>Estado</th>
+                <th>Fecha de Creación</th>
+                <th>Reseña</th> <!-- Nueva columna para las reseñas -->
+                <th>Acción</th> <!-- Columna de acción con botón -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se llenarán los datos de las bases de datos -->
+        </tbody>
+    </table>
 
-    <!-- Main Content Section -->
-    <main>
-        <h1>Vista de Base de Datos</h1>
-        <p>A continuación, se muestran los registros de la base de datos.</p>
+    <!-- Modal para agregar reseña -->
+    <div id="addReseñaModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>Agregar Reseña</h2>
+            <form id="addReseñaForm">
+                <input type="hidden" id="idBasedato" name="idBasedato">
+                <label for="reseña">Reseña:</label>
+                <textarea id="reseña" name="reseña" required></textarea>
+                <button type="submit">Guardar</button>
+                <button type="button" id="closeModalBtn">Cerrar</button>
+            </form>
+        </div>
+    </div>
 
-        <!-- Example Database Records Table -->
-        <section>
-            <h2>Registros de la Base de Datos</h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Recomendación sobre libro X</td>
-                        <td>Comentario sobre el libro X con enlace a más información.</td>
-                        <td>Disponible</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Recomendación sobre libro Y</td>
-                        <td>Comentario sobre el libro Y con enlace a más información.</td>
-                        <td>No disponible</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Recomendación sobre libro Z</td>
-                        <td>Comentario sobre el libro Z, por favor leer antes de proceder.</td>
-                        <td>Disponible</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
+    <script>
+        // Realizar una solicitud AJAX para obtener los datos
+        fetch('/api/basededatos')
+            .then(response => response.json())
+            .then(data => {
+                // Acceder a los datos obtenidos
+                let bases = data;
+                let tbody = document.querySelector('tbody');
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Biblioteca Roguer | Todos los derechos reservados.</p>
-    </footer>
+                // Limpiar la tabla antes de llenarla
+                tbody.innerHTML = '';
+
+                // Recorrer los datos y agregar filas a la tabla
+                bases.forEach(base => {
+                    let tr = document.createElement('tr');
+
+                    tr.innerHTML = `
+                        <td>${base.idbasedatos}</td>
+                        <td>${base.nombre}</td>
+                        <td>${base.descripcion}</td>
+                        <td><a href="${base.enlace}" target="_blank">${base.enlace}</a></td>
+                        <td>${base.estado}</td>
+                        <td>${base.creado_en}</td>
+                        <td>${base.reseña ? base.reseña : 'Sin reseña'}</td>
+                        <td><button class="btn btn-primary" onclick="openReseñaModal(${base.idbasedatos})">Agregar Reseña</button></td>
+                    `;
+
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(error => console.error('Error al cargar los datos:', error));
+
+        // Modal y función para agregar reseña
+        const modal = document.getElementById("addReseñaModal");
+        const closeBtn = document.getElementById("closeModalBtn");
+
+        // Abrir el modal para agregar reseña
+        function openReseñaModal(idBasedato) {
+            document.getElementById("idBasedato").value = idBasedato; // Asignar el id al campo oculto
+            modal.style.display = "block";
+        }
+
+        // Cerrar el modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Enviar la reseña con AJAX
+        document.getElementById('addReseñaForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('/api/reseñas', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire('¡Éxito!', 'Reseña añadida correctamente', 'success');
+                    modal.style.display = 'none';
+                    location.reload(); // Recargar la página para mostrar la nueva reseña
+                } else {
+                    Swal.fire('Error', 'Hubo un problema al añadir la reseña', 'error');
+                }
+            })
+            .catch(error => console.error('Error al enviar los datos:', error));
+        });
+    </script>
 
 </body>
 </html>
-
 
 @endsection

@@ -17,7 +17,7 @@
         <div class="profile">
             <h1>Perfil del Usuario</h1>
             <!-- Foto del perfil (si está disponible en $user->rutafoto) -->
-            <img src="#" alt="Foto del Usuario" style="width:150px; height:150px; border-radius:50%;">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="Foto del Usuario" style="width:150px; height:150px; border-radius:50%;">
 
             <!-- Muestra el nombre y el correo del usuario -->
             <h2>Nombre: {{ $user->nombre }}</h2>

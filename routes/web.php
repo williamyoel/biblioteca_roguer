@@ -117,8 +117,8 @@ Route::get('/api/libros-paga', [DocumentoController::class, 'filtrarLibrosDePaga
 Route::get('/sugerencias_aportes', function () {
     return view('vista_sugierencias_aportes');
 })->name('sugerencias_aportes');
-
-Route::get('/recomendaciones', [RecomendacionesDocumentoController::class, 'mostrarRecomendaciones'])->name('recomendaciones');
+Route::get('/api/recomendaciones', [RecomendacionesDocumentoController::class, 'recomendaciones']);
+Route::post('/api/recomendaciones', [RecomendacionesDocumentoController::class, 'store']);
 
 
 //vista inicio
@@ -131,6 +131,11 @@ Route::get('/vista_inicio', function () {
 Route::get('/vista_basededatos', function () {
     return view('vista_basededatos'); // Asegúrate de que 'vista_documento' sea el nombre correcto del archivo blade.php
 })->name('vista_basededatos');
+
+Route::get('/api/basededatos', [BaseDatosController::class, 'index']);
+
+
+
 
 //admin eliminar
 Route::get('/admin_eliminar', function () {

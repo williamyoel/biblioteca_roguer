@@ -28,4 +28,11 @@ class BaseDatosController extends Controller
     
         return redirect()->route('admin.añadir')->with('success', 'Elemento añadido correctamente');
     }
+
+    //obtener todos los registros
+    public function index()
+    {
+        $bases = BaseDatos::all();
+        return response()->json($bases);
+    }
 }
