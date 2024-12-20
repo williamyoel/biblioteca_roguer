@@ -6,6 +6,8 @@
     <title>Iniciar sesión</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Fondo general */
         body {
@@ -28,36 +30,25 @@
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        /* Estilo de las etiquetas */
-        .login-container label {
-            color: #ddd;
-        }
-
-        /* Campos de texto */
-        .login-container .form-control {
-            background-color: rgba(255, 255, 255, 0.8);
-            border: none;
-            color: #333;
-        }
-
-        /* Botones */
-        .login-container .btn {
+        /* Botón flotante con icono */
+        .admin-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             background-color: #007bff;
-            border: none;
-            font-weight: bold;
+            color: white;
+            font-size: 24px;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .login-container .btn:hover {
+        .admin-icon:hover {
             background-color: #0056b3;
-        }
-
-        /* Enlaces */
-        .login-container a {
-            color: #00bcd4;
-        }
-
-        .login-container a:hover {
-            text-decoration: underline;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -111,6 +102,12 @@
             <a href="#" class="d-block">¿Olvidaste tu contraseña?</a>
         </div>
     </div>
+
+    <!-- Icono flotante para admin -->
+    <a href="recomendacionesdocumento" class="admin-icon" title="Ir a Admin">
+    <i class="fas fa-cog"></i>
+    </a>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
