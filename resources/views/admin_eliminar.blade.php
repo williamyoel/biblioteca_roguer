@@ -2,56 +2,71 @@
 
 @section('content')
 
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Eliminar Registro</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Seleccionar Sección</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilo para el menú lateral */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-bottom: 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-info {
+            font-size: 18px;
+            padding: 12px 20px;
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Header Section -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Recomendaciones</a></li>
-                <li><a href="#">Eliminar</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main Content Section -->
+    <!-- Contenido principal -->
     <main>
-        <h1>Eliminar Registro</h1>
+        <div class="container">
+            <h2 class="mb-4">ELIMINAR</h2>
 
-        <!-- Confirmation Section -->
-        <section>
-            <h2>¿Está seguro de que desea eliminar este registro?</h2>
-
-            <p><strong>Comentario:</strong> hoal</p>
-            <p><strong>Descripción:</strong> hola</p>
-
-            <form action="#" method="POST">
-                @csrf
-                @method('DELETE')
-
-                <button type="submit" class="btn-delete">Eliminar</button>
-                <a href="#" class="btn-cancel">Cancelar</a>
-            </form>
-        </section>
+            <div class="btn-group">
+                <a href="#" class="btn btn-info">Artículos</a>
+                <a href="#" class="btn btn-info">Libros</a>
+                <a href="#" class="btn btn-info">Base de Datos</a>
+            </div>
+        </div>
     </main>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Biblioteca Roguer | Todos los derechos reservados.</p>
-    </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
