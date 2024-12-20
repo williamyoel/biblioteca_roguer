@@ -57,7 +57,53 @@
         <div id="libros-gratuitos" class="mt-4">
             <h4>Libros Gratuitos</h4>
             <div class="row" id="libros-gratuitos-list">
-                <!-- Los libros gratuitos se agregarán aquí dinámicamente -->
+            <script>
+                // Mostrar los libros gratuitos
+                function mostrarLibrosGratuitos(libros) {
+                    let container = document.getElementById('libros-gratuitos-list');
+                    container.innerHTML = ''; // Limpiar la lista
+                    libros.forEach(libro => {
+                        let imagen = libro.imagen || '/images/placeholder.png'; // Imagen predeterminada
+                        let enlace = libro.enlace || 'https://m.media-amazon.com/images/I/51O8pKSuQlL._SY445_SX342_.jpg'; // Enlace predeterminado
+                        let libroElement = `
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img src="${imagen}" alt="${libro.titulo}" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${libro.titulo}</h5>
+                                        <p class="card-text">${libro.descripcion}</p>
+                                        <a href="${enlace}" class="btn btn-primary" target="${enlace !== '#' ? '_blank' : ''}">Ver Libro</a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        container.innerHTML += libroElement;
+                    });
+                }
+
+                // Cargar libros gratuitos desde la API
+                function cargarLibrosGratuitos() {
+                    fetch('/api/libros-gratuitos')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`Error en la API: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log("Datos recibidos de la API:", data);
+                            mostrarLibrosGratuitos(data);
+                        })
+                        .catch(error => {
+                            console.error('Error al obtener libros gratuitos:', error);
+                        });
+                }
+
+                // Llamar a la función al cargar la página
+                document.addEventListener('DOMContentLoaded', () => {
+                    cargarLibrosGratuitos();
+                });
+            </script>
             </div>
         </div>
 
@@ -131,7 +177,7 @@
                     container.innerHTML = ''; // Limpiar lista de artículos
                     data.forEach(articulo => {
                         let imagen = articulo.imagen ? articulo.imagen : '/images/placeholder.png'; // Imagen predeterminada
-                        let enlace = articulo.enlace ? articulo.enlace : '#'; // Enlace predeterminado
+                        let enlace = articulo.enlace ? articulo.enlace : 'https://m.media-amazon.com/images/I/51O8pKSuQlL._SY445_SX342_.jpg'; // Enlace predeterminado
                         let articuloElement = `
                             <div class="col-md-4">
                                 <div class="card">

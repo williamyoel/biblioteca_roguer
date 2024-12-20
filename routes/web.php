@@ -111,3 +111,11 @@ Route::get('/libro_articulos', function () {
 Route::get('/api/articulos', [DocumentoController::class, 'filtrarArticulos']); // Ruta para filtrar artículos
 Route::get('/api/libros-gratuitos', [DocumentoController::class, 'filtrarLibrosGratuitos']); // Ruta para libros gratuitos
 Route::get('/api/libros-paga', [DocumentoController::class, 'filtrarLibrosDePaga']); // Ruta para libros de paga
+
+
+//ruta para la vista de sugerencias aportes de documentos
+Route::get('/sugerencias_aportes', function () {
+    return view('vista_sugierencias_aportes');
+})->name('sugerencias_aportes');
+
+Route::get('/recomendaciones', [RecomendacionesDocumentoController::class, 'mostrarRecomendaciones'])->name('recomendaciones');

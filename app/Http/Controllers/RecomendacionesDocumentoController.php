@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RecomendacionesDocumento;
 use Illuminate\Http\Request;
+use App\Models\Reacciones;
 
 class RecomendacionesDocumentoController extends Controller
 {
@@ -15,6 +16,14 @@ class RecomendacionesDocumentoController extends Controller
 
         // Retorna la vista y pasa los datos de las recomendaciones
         return view('admin_recomendaciones', compact('recomendaciones'));
+    }
+
+    //mostrar recomendaciones
+    public function mostrarRecomendaciones()
+    {
+        $recomendaciones = RecomendacionesDocumento::all();
+        $likes
+        return view('vista_sugierencias_aportes', compact('recomendaciones'));
     }
 
     // Eliminar una recomendación
