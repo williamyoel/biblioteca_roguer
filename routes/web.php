@@ -8,11 +8,12 @@ use App\Http\Controllers\HelpController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\RecomendacionesDocumentoController;
 use App\Http\Controllers\BaseDatosController;
+use App\Http\Controllers\DocumentoController;
 
 #para serrar sesion
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    });
+    // Route::middleware(['auth'])->group(function () {
+    //     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // });
 
 // Página principal
 // Route::get('/', [AuthController::class, 'showLogin'])->name('home');
@@ -85,6 +86,13 @@ Route::get('/usuario', function () {
 // Ruta para ver el perfil del usuario
 Route::get('/perfil', [UserController::class, 'profile'])->name('usuario_perfil');
 
+Route::get('/usuarioupdate', function () {
+    return view('usuario_editar_perfil');
+})->name('usuario_editar_perfil');
+// Ruta para actualizar el perfil
+// Route::put('/usuario/actualizar', [UserController::class, 'update'])->name('usuario.update');
+
+
 
 //rutas para la base de datos
 Route::post('/admin/añadir', [BaseDatosController::class, 'store'])->name('base-datos.store');
@@ -93,3 +101,13 @@ Route::post('/admin/añadir', [BaseDatosController::class, 'store'])->name('base
 Route::get('soporte_ayuda_index', function () {
     return view('soporte_ayuda_index');
 });
+
+// Ruta principal para la vista de búsqueda de documentos
+Route::get('/libro_articulos', function () {
+    return view('vista_documento'); // Asegúrate de que 'vista_documento' sea el nombre correcto del archivo blade.php
+})->name('libro_articulos');
+
+// Rutas para los documentos
+Route::get('/api/articulos', [DocumentoController::class, 'filtrarArticulos']); // Ruta para filtrar artículos
+Route::get('/api/libros-gratuitos', [DocumentoController::class, 'filtrarLibrosGratuitos']); // Ruta para libros gratuitos
+Route::get('/api/libros-paga', [DocumentoController::class, 'filtrarLibrosDePaga']); // Ruta para libros de paga

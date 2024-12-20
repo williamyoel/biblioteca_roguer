@@ -13,34 +13,25 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
-    @if(Auth::check()) <!-- Verifica si el usuario está autenticado -->
-        <div class="container mt-5">
-            <div class="row">
-                <!-- Columna de la foto de perfil -->
-                <div class="col-md-4 text-center">
-                    <div class="border border-primary rounded-circle" style="width: 200px; height: 200px; margin: auto;">
-                        <img src="#" alt="Foto del Usuario" class="img-fluid rounded-circle" style="width: 100%; height: 100%;">
-                    </div>
-                </div>
+    @if ($user) <!-- Verifica si el objeto $user existe -->
+        <div class="profile">
+            <h1>Perfil del Usuario</h1>
+            <!-- Foto del perfil (si está disponible en $user->rutafoto) -->
+            <img src="#" alt="Foto del Usuario" style="width:150px; height:150px; border-radius:50%;">
 
-                <!-- Columna de los detalles del usuario -->
-                <div class="col-md-8">
-                    <div class="border border-primary p-3 rounded">
-                        <h1>Perfil del Usuario</h1>
-                        <h2>{{ Auth::user()->name }}</h2> <!-- Muestra el nombre del usuario autenticado -->
-                        <p><strong>Email:</strong> {{ Auth::user()->email }}</p> <!-- Muestra el correo del usuario autenticado -->
-                    </div>
-                </div>
-            </div>
+            <!-- Muestra el nombre y el correo del usuario -->
+            <h2>Nombre: {{ $user->nombre }}</h2>
+            <p>Email: {{ $user->correo }}</p>
 
-            <!-- Botones en la parte inferior -->
-            <div class="row mt-4">
-                <div class="col text-center">
-                    <a href="¿#" class="btn btn-primary">
-                        Editar Perfil
-                    </a>
-                </div>
-            </div>
+            <!-- Enlace para editar el perfil -->
+            <a href="usuarioupdate">
+                <button>✏️ Editar Perfil</button>
+            </a>
+
+            <!-- Enlace para regresar (puedes cambiar la ruta a la que desees) -->
+            <a href="#">
+                <button>⬅️ Regresar</button>
+            </a>
         </div>
     @else
         <div class="container mt-5 text-center">
