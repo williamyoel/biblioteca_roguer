@@ -28,7 +28,7 @@
                     container.innerHTML = ''; // Limpiar la lista
                     libros.forEach(libro => {
                         let imagen = libro.imagen || '/images/placeholder.png'; // Imagen predeterminada
-                        let enlace = libro.enlace || '#'; // Enlace predeterminado
+                        let enlace = libro.enlace || 'https://m.media-amazon.com/images/I/51O8pKSuQlL._SY445_SX342_.jpg'; // Enlace predeterminado
                         let libroElement = `
                             <div class="col-md-3 mb-3">
                                 <div class="card">
@@ -117,7 +117,7 @@
                     container.innerHTML = '';  // Limpiar lista de artículos
                     data.forEach(articulo => {
                         let imagen = articulo.imagen ? articulo.imagen : '/images/placeholder.png'; // Imagen predeterminada
-                        let enlace = articulo.enlace ? articulo.enlace : '#'; // Enlace predeterminado
+                        let enlace = articulo.enlace ? articulo.enlace : 'https://m.media-amazon.com/images/I/51O8pKSuQlL._SY445_SX342_.jpg'; // Enlace predeterminado
                         let articuloElement = `
                             <div class="col-md-3 mb-3">
                                 <div class="card">
