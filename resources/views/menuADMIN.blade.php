@@ -27,6 +27,7 @@
 </head>
 <body>
 <nav class="d-flex flex-column p-3">
+<img src="{{ asset('images/logo admin.png') }}" class="img-fluid">
     <a class="navbar-brand text-light fs-4 fw-bold mb-4" href="#">Administrador</a>
     <ul class="navbar-nav flex-grow-1 w-100">
         <!-- Inicio -->

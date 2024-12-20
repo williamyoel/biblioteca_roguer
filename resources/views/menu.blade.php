@@ -35,8 +35,7 @@
 <body>
 <nav class="d-flex flex-column p-3">
     <!-- Imagen en la parte superior del menú -->
-    <img src="public/images/imagen_usuario.jpg" alt="Logo de la Biblioteca">
-    
+    <img src="{{ asset('images\Goku-png-sin-fondo.png') }}" class="img-fluid">
     <a class="navbar-brand text-light fs-4 fw-bold mb-4" href="#">Biblioteca</a>
     <ul class="navbar-nav flex-grow-1 w-100">
         <!-- Usuario -->
@@ -65,7 +64,7 @@
         </li>
         <!-- Soporte/Ayuda -->
         <li class="nav-item">
-            <a class="nav-link text-light d-flex align-items-center" href="#">
+            <a class="nav-link text-light d-flex align-items-center" href="soporte_ayuda_index">
                 <i class="bi bi-question-circle me-2"></i> Soporte/Ayuda
             </a>
         </li>

@@ -86,7 +86,10 @@ Route::get('/usuario', function () {
 Route::get('/perfil', [UserController::class, 'profile'])->name('usuario_perfil');
 
 
-
-
 //rutas para la base de datos
 Route::post('/admin/añadir', [BaseDatosController::class, 'store'])->name('base-datos.store');
+
+#redirecion para soporte y ayuda
+Route::get('soporte_ayuda_index', function () {
+    return view('soporte_ayuda_index');
+});
