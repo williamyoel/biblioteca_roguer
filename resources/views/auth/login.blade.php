@@ -9,7 +9,7 @@
     <style>
         /* Fondo general */
         body {
-            background: url('https://blog.pearsonlatam.com/educacion-del-futuro/que-contenidos-ofrece-una-biblioteca-digital-a-tu-institucion') no-repeat center center fixed;
+            background: url('https://img.freepik.com/vector-gratis/ilustracion-fondo-abstracto-onda-plata_53876-81165.jpg') no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
             display: flex;
@@ -28,42 +28,46 @@
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        /* Estilo de las etiquetas */
         .login-container label {
             color: #ddd;
         }
 
-        /* Campos de texto */
         .login-container .form-control {
             background-color: rgba(255, 255, 255, 0.8);
             border: none;
             color: #333;
         }
 
-        /* Botones */
         .login-container .btn {
             background-color: #007bff;
             border: none;
             font-weight: bold;
+            width: 100%;
         }
 
         .login-container .btn:hover {
             background-color: #0056b3;
         }
 
-        /* Enlaces */
         .login-container a {
             color: #00bcd4;
+            display: block;
+            margin-top: 15px;
+            text-align: center;
         }
 
         .login-container a:hover {
             text-decoration: underline;
         }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Iniciar sesión</h2>
+    <div class="container login-container">
+        <h2 class="text-center">Iniciar sesión</h2>
 
         <!-- Mostrar errores -->
         @if($errors->any())
@@ -100,11 +104,11 @@
             </div>
         </form>
 
-        <a href="recomendacionesdocumento">admin</a>
-
-        <a href="{{ route('register') }}">crear cuenta</a>
-
-        <p>¿Olvidaste tu contraseña? <a href="#">Recuperar contraseña</a></p>
+        <div class="text-center">
+            <a href="recomendacionesdocumento">admin</a>
+            <a href="{{ route('register') }}">Crear cuenta</a>
+            <p>¿Olvidaste tu contraseña? <a href="#">Recuperar contraseña</a></p>
+        </div>
     </div>
 
     <!-- Bootstrap JS -->
