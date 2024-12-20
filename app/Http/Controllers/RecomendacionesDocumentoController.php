@@ -18,13 +18,7 @@ class RecomendacionesDocumentoController extends Controller
         return view('admin_recomendaciones', compact('recomendaciones'));
     }
 
-    //mostrar recomendaciones
-    public function mostrarRecomendaciones()
-    {
-        $recomendaciones = RecomendacionesDocumento::all();
-        $likes
-        return view('vista_sugierencias_aportes', compact('recomendaciones'));
-    }
+
 
     // Eliminar una recomendación
     public function destroy($idrecomendacionesDocumento)
