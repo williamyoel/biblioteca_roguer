@@ -6,7 +6,7 @@ use App\Models\Usuario; // Asegúrate de usar el modelo correcto
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Container\Attributes\Storage;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -64,33 +64,41 @@ class UserController extends Controller
         return view('usuario_index', compact('user'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'rutafoto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validar la foto (opcional)
-        ]);
-
-        $user = Usuario::findOrFail($id);
-
-        $user->nombre = $request->nombre;
-
-        if ($request->hasFile('rutafoto')) {
-            if ($user->rutafoto) {
-                Storage::delete('public/images/' . $user->rutafoto);
-            }
-
-            // Guardar la nueva foto
-            $imageName = time() . '.' . $request->rutafoto->extension();
-            $request->rutafoto->storeAs('public/images', $imageName);
-            $user->rutafoto = $imageName;
-        }
-
-        // Guardar los cambios en la base de datos
-        $user->save();
-
-        // Redirigir con un mensaje de éxito
-        return redirect()->route('usuario.profile')->with('success', 'Perfil actualizado correctamente.');
-    }
-
+    // // Función para actualizar el perfil del usuario
+    // public function update(Request $request)
+    // {
+    //     // Obtén el usuario autenticado
+    //     $user = Auth::user();
+    
+    //     if (!$user instanceof Usuario) {
+    //         return redirect()->route('login')->withErrors('Necesitas estar autenticado para editar tu perfil.');
+    //     }
+    
+    //     // Valida los datos enviados desde el formulario
+    //     $request->validate([
+    //         'nombre' => 'required|string|max:255',
+    //         'rutafoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Foto opcional
+    //     ]);
+    
+    //     // Actualiza el nombre del usuario
+    //     $user->nombre = $request->input('nombre');
+    
+    //     // Si se ha subido una nueva foto
+    //     if ($request->hasFile('rutafoto')) {
+    //         // Elimina la foto anterior si existe
+    //         if ($user->rutafoto && Storage::exists($user->rutafoto)) {
+    //             Storage::delete($user->rutafoto);
+    //         }
+    
+    //         // Guarda la nueva foto en la carpeta 'images'
+    //         $fotoPath = $request->file('rutafoto')->store('images'); // Guarda en 'images' en vez de 'public/fotos_perfil'
+    //         $user->rutafoto = $fotoPath; // Guardamos la nueva ruta de la foto
+    //     }
+    
+    //     // Guarda los cambios en la base de datos
+    //     $user->save();  // Asegúrate de que $user es una instancia de Usuario
+    
+    //     // Redirige al perfil con un mensaje de éxito
+    //     return redirect()->route('usuario.editar')->with('success', 'Perfil actualizado correctamente.');
+    // }
 }   

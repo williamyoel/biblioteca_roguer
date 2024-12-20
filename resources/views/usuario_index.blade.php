@@ -22,7 +22,7 @@
             <p>Email: {{ $user->correo }}</p>
 
             <!-- Enlace para editar el perfil -->
-            <a href="#">
+            <a href="usuarioupdate">
                 <button>✏️ Editar Perfil</button>
             </a>
 

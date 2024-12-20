@@ -10,9 +10,9 @@ use App\Http\Controllers\RecomendacionesDocumentoController;
 use App\Http\Controllers\BaseDatosController;
 
 #para serrar sesion
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    });
+    // Route::middleware(['auth'])->group(function () {
+    //     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // });
 
 // Página principal
 // Route::get('/', [AuthController::class, 'showLogin'])->name('home');
@@ -84,6 +84,13 @@ Route::get('/usuario', function () {
 })->name('usuario_index');
 // Ruta para ver el perfil del usuario
 Route::get('/perfil', [UserController::class, 'profile'])->name('usuario_perfil');
+
+Route::get('/usuarioupdate', function () {
+    return view('usuario_editar_perfil');
+})->name('usuario_editar_perfil');
+// Ruta para actualizar el perfil
+// Route::put('/usuario/actualizar', [UserController::class, 'update'])->name('usuario.update');
+
 
 
 //rutas para la base de datos
